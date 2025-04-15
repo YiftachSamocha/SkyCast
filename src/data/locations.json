@@ -4,7 +4,7 @@
         "country": "Japan",
         "lat": 35.689487,
         "lon": 139.691711,
-        "img": "/img/tokyo.jpg",
+        "img": "/img/cities-imgs/tokyo.jpg",
         "_id": 1
     },
     {
@@ -12,7 +12,7 @@
         "country": "California",
         "lat": 34.052235,
         "lon": -118.243683,
-        "img": "/img/los-angeles.jpg",
+        "img": "/img/cities-imgs/los-angeles.jpg",
         "_id": 2
     },
     {
@@ -20,7 +20,7 @@
         "country": "Thailand",
         "lat": 13.756331,
         "lon": 100.501762,
-        "img": "/img/bangkok.jpg",
+        "img": "/img/cities-imgs/bangkok.jpg",
         "_id": 3
     },
     {
@@ -28,7 +28,7 @@
         "country": "England",
         "lat": 51.507351,
         "lon": -0.127758,
-        "img": "/img/london.jpg",
+        "img": "/img/cities-imgs/london.jpg",
         "_id": 4
     },
     {
@@ -36,7 +36,7 @@
         "country": "Israel",
         "lat": 32.073582,
         "lon": 34.788052,
-        "img": "/img/tel-aviv.jpg",
+        "img": "/img/cities-imgs/tel-aviv.jpg",
         "_id": 5
     }
 ]
