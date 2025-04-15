@@ -3,30 +3,30 @@
         "city": "Tel Aviv",
         "country": "Israel",
         "lat": 32.073582,
-        "lng": 34.788052
+        "lon": 34.788052
     },
     {
         "city": "Tokyo",
         "country": "Japan",
         "lat": 35.689487,
-        "lng": 139.691711
+        "lon": 139.691711
     },
     {
         "city": "Los Angeles",
         "country": "California",
         "lat": 34.052235,
-        "lng": -118.243683
+        "lon": -118.243683
     },
     {
         "city": "Bangkok",
         "country": "Thailand",
         "lat": 13.756331,
-        "lng": 100.501762
+        "lon": 100.501762
     },
     {
         "city": "London",
         "country": "England",
         "lat": 51.507351,
-        "lng": -0.127758
+        "lon": -0.127758
     }
 ]
