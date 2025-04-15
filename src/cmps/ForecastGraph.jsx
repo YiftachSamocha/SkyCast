@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react"
-import { Area, AreaChart, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts"
+import { Area, AreaChart, Tooltip, XAxis, YAxis } from "recharts"
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import MuiTooltip from "@mui/material/Tooltip";
+import { Button } from "@mui/material";
 
-export function ForecastGraph({ location }) {
+export function ForecastGraph({ location, clearLocation }) {
     const [weekData, setWeekData] = useState([])
     const [isError, setIsError] = useState(false)
+    const [isNight, setIsNight] = useState(false)
+    const nightColor = '#2C3E50'
+    const dayColor = '#FFECB3'
 
     useEffect(() => {
         if (location) getData(location)
 
-    }, [location])
+    }, [location, isNight])
 
     async function getData(location) {
         try {
@@ -27,7 +31,8 @@ export function ForecastGraph({ location }) {
                 return {
                     day: dayName,
                     date: formattedDate,
-                    temp: Math.round(item.temp.day),
+                    tempDay: Math.round(item.temp.day),
+                    tempNight: Math.round(item.temp.night),
                     summary: item.summary
                 }
             })
@@ -53,13 +58,13 @@ export function ForecastGraph({ location }) {
                         textAlign: 'center',
                         minWidth: '150px',
                     }}>
-                        <Typography variant="subtitle1">{`${data.day}, ${data.temp}°C`}</Typography>
+                        <Typography variant="subtitle1">{`${data.day}, ${isNight ? data.tempNight : data.tempDay}°C`}</Typography>
                         <Typography variant="body2">{data.summary}</Typography>
                     </Box>
                 </MuiTooltip>
-            );
+            )
         }
-        return null;
+        return null
     }
 
 
@@ -68,16 +73,17 @@ export function ForecastGraph({ location }) {
 
 
     return <section>
-        {isError ? <div>Couldnt load whethear forecast</div> :
+        {isError ? <div>Couldnt load whethear forecast</div> : <div>
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: 3 }}>
                 <AreaChart width={850} height={250} data={weekData}
                     margin={{ top: 5, right: 30, left: 30, bottom: 5 }}>
                     <XAxis dataKey="day" />
-                    <YAxis domain={['dataMin - 2', 'dataMax + 2']} tick={{ fill: '#333', fontSize: 14, fontWeight: 'bold' }} hide />
+                    <YAxis domain={['dataMin - 2', 'dataMax + 2']}
+                        tick={{ fill: '#333', fontSize: 14, fontWeight: 'bold' }} hide />
                     <Tooltip content={<Summary />} cursor={false} />
                     <Area
                         type="monotone"
-                        dataKey="temp"
+                        dataKey={isNight ? "tempNight" : "tempDay"}
                         stroke="#1976d2"
                         fill="#90caf9"
                         fillOpacity={0.7}
@@ -90,6 +96,23 @@ export function ForecastGraph({ location }) {
                 </AreaChart>
 
             </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'space-around', margin: 3, mt: 2 }}>
+                <Button variant="contained" disableElevation onClick={clearLocation}>
+                    Clear
+                </Button>
+                <Button variant="contained" disableElevation onClick={() => setIsNight(prev => !prev)}
+                    sx={{
+                        width: '100px',
+                        backgroundColor: isNight ? nightColor : dayColor,
+                        color: isNight ? 'white' : 'black',
+                        border: '1px solid gray'
+                    }}>
+                    {isNight ? "Night" : "Day"}
+
+                </Button>
+            </Box>
+        </div>
+
         }
     </section>
 

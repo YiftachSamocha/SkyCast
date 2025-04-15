@@ -15,15 +15,8 @@ export function ForecastIndex() {
         <ForecastHeader clearLocation={() => setCurrLoc(null)} />
         <ForecastList currLoc={currLoc} setCurrLoc={setCurrLoc} />
         {currLoc && <div>
-            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-                <Button variant="contained" disableElevation onClick={() => setCurrLoc(null)}>
-                    Clear
-                </Button>
-            </Box>
-
-            <ForecastGraph location={currLoc} />
-        </div>
-        }
+            <ForecastGraph location={currLoc} clearLocation={() => setCurrLoc(null)} />
+        </div>}
     </section>
 
 }
