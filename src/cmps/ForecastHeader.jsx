@@ -9,11 +9,11 @@ const Header = styled(AppBar)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: theme.spacing(1, 8),
+    padding: theme.spacing(1,5),
     flexDirection: "row",
     marginBottom: theme.spacing(3)
-}));
-export default function ForecastHeader({ clearLocation }) {
+}))
+export function ForecastHeader({ clearLocation }) {
     return (
         <Box sx={{ flexGrow: 1 }}>
 

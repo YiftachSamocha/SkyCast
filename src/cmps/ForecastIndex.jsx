@@ -1,10 +1,10 @@
 import { useState } from "react"
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { ForecastGraph } from "./ForecastGraph"
-import { ForecastList } from "./MUI cmps/ForecastList"
-import ForecastHeader from "./MUI cmps/ForecastHeader"
 import CssBaseline from '@mui/material/CssBaseline';
+import { ForecastList } from "./ForecastList";
+import { ForecastHeader } from "./ForecastHeader";
+import { ForecastGraph } from "./ForecastGraph";
 
 
 export function ForecastIndex() {

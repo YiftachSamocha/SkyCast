@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { getLocations } from '../../service';
+import { getLocations } from '../service';
 import { Typography } from '@mui/material';
 
 
@@ -41,7 +41,7 @@ export function ForecastList({ currLoc, setCurrLoc }) {
                         <Item onClick={() => setCurrLoc(location)}
                             sx={{
                                 backgroundColor: currLoc && location._id === currLoc._id ? '#90caf9' : '#fff',
-                                 
+
                             }}>
                             <Typography variant="h5" component="h3" sx={{ fontWeight: 'bold', color: 'black' }}>
                                 {location.city}
@@ -55,5 +55,5 @@ export function ForecastList({ currLoc, setCurrLoc }) {
                 ))}
             </Grid>
         </Box>
-    );
+    )
 }

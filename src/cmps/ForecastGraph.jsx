@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react"
+import { Area, AreaChart, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts"
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import MuiTooltip from "@mui/material/Tooltip";
 
 export function ForecastGraph({ location }) {
     const [weekData, setWeekData] = useState([])
@@ -20,9 +24,14 @@ export function ForecastGraph({ location }) {
                 date.setDate(today.getDate() + idx)
                 const dayName = date.toLocaleDateString("en-US", { weekday: "long" })
                 const formattedDate = date.toLocaleDateString("en-US", { month: "short", day: "numeric" })
-                return { day: dayName, date: formattedDate, temp: item.temp.day }
+                return {
+                    day: dayName,
+                    date: formattedDate,
+                    temp: Math.round(item.temp.day),
+                    summary: item.summary
+                }
             })
-            days[0].day = 'today'
+            days[0].day = 'Today'
             setWeekData(days)
 
         } catch {
@@ -30,30 +39,57 @@ export function ForecastGraph({ location }) {
         }
 
     }
+    function Summary({ active, payload }) {
+        if (active && payload && payload.length) {
+            const data = payload[0].payload;
+            return (
+                <MuiTooltip>
+                    <Box sx={{
+                        backgroundColor: '#f9f9f9',
+                        border: '1px solid #ccc',
+                        borderRadius: '8px',
+                        padding: '10px',
+                        boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+                        textAlign: 'center',
+                        minWidth: '150px',
+                    }}>
+                        <Typography variant="subtitle1">{`${data.day}, ${data.temp}°C`}</Typography>
+                        <Typography variant="body2">{data.summary}</Typography>
+                    </Box>
+                </MuiTooltip>
+            );
+        }
+        return null;
+    }
+
+
+
+
 
 
     return <section>
         {isError ? <div>Couldnt load whethear forecast</div> :
-            <table className="forecast-graph">
-                <tbody>
-                    <tr>
-                        {weekData.map(info => {
-                            return <td>{info.day}</td>
-                        })}
-                    </tr>
-                    <tr>
-                        {weekData.map(info => {
-                            return <td>{info.date}</td>
-                        })}
-                    </tr>
-                    <tr>
-                        {weekData.map(info => {
-                            return <td>{info.temp}</td>
-                        })}
-                    </tr>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: 3 }}>
+                <AreaChart width={850} height={250} data={weekData}
+                    margin={{ top: 5, right: 30, left: 30, bottom: 5 }}>
+                    <XAxis dataKey="day" />
+                    <YAxis domain={['dataMin - 2', 'dataMax + 2']} tick={{ fill: '#333', fontSize: 14, fontWeight: 'bold' }} hide />
+                    <Tooltip content={<Summary />} cursor={false} />
+                    <Area
+                        type="monotone"
+                        dataKey="temp"
+                        stroke="#1976d2"
+                        fill="#90caf9"
+                        fillOpacity={0.7}
+                        baseValue="dataMin"
+                        label={{ position: 'top', fill: '#444', fontSize: 16 }}
+                    />
 
-                </tbody>
-            </table>
+
+
+                </AreaChart>
+
+            </Box>
         }
     </section>
 
