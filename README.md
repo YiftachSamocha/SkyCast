@@ -62,8 +62,7 @@ To run the project using `npm`, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd SkyCast
+   git clone https://github.com/YiftachSamocha/SkyCast.git
    ```
 
 2. Install the dependencies:

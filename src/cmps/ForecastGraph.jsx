@@ -2,8 +2,8 @@ import { useEffect, useState } from "react"
 import { Area, AreaChart, Tooltip, XAxis, YAxis } from "recharts"
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import MuiTooltip from "@mui/material/Tooltip";
 import { Button } from "@mui/material";
+import { Summary } from "./CustomHooks.jsx/Summary";
 
 export function ForecastGraph({ location, clearLocation }) {
     const [weekData, setWeekData] = useState([])
@@ -31,9 +31,9 @@ export function ForecastGraph({ location, clearLocation }) {
                 return {
                     day: dayName,
                     date: formattedDate,
-                    tempDay: Math.round(item.temp.day),
-                    tempNight: Math.round(item.temp.night),
-                    summary: item.summary
+                    temp: isNight ? Math.round(item.temp.night) : Math.round(item.temp.day),
+                    summary: item.summary,
+                    img: `/img/weather-icons/${item.weather[0].icon}@2x.png`
                 }
             })
             days[0].day = 'Today'
@@ -44,59 +44,60 @@ export function ForecastGraph({ location, clearLocation }) {
         }
 
     }
-    function Summary({ active, payload }) {
-        if (active && payload && payload.length) {
-            const data = payload[0].payload;
-            return (
-                <MuiTooltip>
-                    <Box sx={{
-                        backgroundColor: '#f9f9f9',
-                        border: '1px solid #ccc',
-                        borderRadius: '8px',
-                        padding: '10px',
-                        boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-                        textAlign: 'center',
-                        minWidth: '150px',
-                    }}>
-                        <Typography variant="subtitle1">{`${data.day}, ${isNight ? data.tempNight : data.tempDay}°C`}</Typography>
-                        <Typography variant="body2">{data.summary}</Typography>
-                    </Box>
-                </MuiTooltip>
-            )
-        }
-        return null
+
+    function Tick({ x, y, payload }) {
+        const data = weekData.find((item) => item.date === payload.value)
+
+        if (!data) return null
+
+        const { day, date, img } = data
+        return (
+            <foreignObject x={x - 30} y={y + 10} width={70} height={70}>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    fontSize: '12px',
+                    lineHeight: "1.2em",
+                    color: '#333',
+                }}>
+                    <strong>{day}</strong>
+                    <span>{date}</span>
+                    <img src={img} style={{ height: '50px', width: '50px' }} />
+                </div>
+            </foreignObject>
+        )
     }
 
-
-
-
-
-
     return <section>
-        {isError ? <div>Couldnt load whethear forecast</div> : <div>
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: 3 }}>
-                <AreaChart width={850} height={250} data={weekData}
-                    margin={{ top: 5, right: 30, left: 30, bottom: 5 }}>
-                    <XAxis dataKey="day" />
+        {isError ? <Typography variant="h6"
+            sx={{
+                fontWeight: 'bold',
+                fontSize: '1.5em',
+                color: '#d32f2f',
+                textAlign: 'center',
+                marginTop: '20px',
+            }}>Couldn't load wheather forecast</Typography> : <div>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
+                <AreaChart width={850} height={270} data={weekData}
+                    margin={{ top: 0, right: 30, left: 30, bottom: 60 }}>
+                    <XAxis dataKey="date" tick={<Tick />} />
                     <YAxis domain={['dataMin - 2', 'dataMax + 2']}
                         tick={{ fill: '#333', fontSize: 14, fontWeight: 'bold' }} hide />
                     <Tooltip content={<Summary />} cursor={false} />
                     <Area
                         type="monotone"
-                        dataKey={isNight ? "tempNight" : "tempDay"}
+                        dataKey="temp"
                         stroke="#1976d2"
                         fill="#90caf9"
                         fillOpacity={0.7}
                         baseValue="dataMin"
                         label={{ position: 'top', fill: '#444', fontSize: 16 }}
                     />
-
-
-
                 </AreaChart>
 
             </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'space-around', margin: 3, mt: 2 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-around', margin: 1, mt: 1.5 }}>
                 <Button variant="contained" disableElevation onClick={clearLocation}>
                     Clear
                 </Button>

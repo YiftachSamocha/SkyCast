@@ -1,5 +1,4 @@
 import { useState } from "react"
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ForecastList } from "./ForecastList";
@@ -36,7 +35,7 @@ export function ForecastIndex() {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: '50vh', // Center vertically in the viewport
+                height: '50vh', 
                 textAlign: 'center',
             }}
         >
