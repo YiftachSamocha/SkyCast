@@ -1,21 +1,10 @@
 .forecast-index {
     padding: 1em;
+    background-color: #FCE4E4;
+
 
     .locations-list {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 15px;
-
-        .location-item {
-            background-color: aqua;
-            padding: 1em;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-            border: 1px solid black;
-            cursor: pointer;
-        }
+       
     }
     button {
         margin-top: 10px;

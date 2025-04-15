@@ -1,32 +1,42 @@
 [
     {
-        "city": "Tel Aviv",
-        "country": "Israel",
-        "lat": 32.073582,
-        "lon": 34.788052
-    },
-    {
         "city": "Tokyo",
         "country": "Japan",
         "lat": 35.689487,
-        "lon": 139.691711
+        "lon": 139.691711,
+        "img": "/img/tokyo.jpg",
+        "_id": 1
     },
     {
         "city": "Los Angeles",
         "country": "California",
         "lat": 34.052235,
-        "lon": -118.243683
+        "lon": -118.243683,
+        "img": "/img/los-angeles.jpg",
+        "_id": 2
     },
     {
         "city": "Bangkok",
         "country": "Thailand",
         "lat": 13.756331,
-        "lon": 100.501762
+        "lon": 100.501762,
+        "img": "/img/bangkok.jpg",
+        "_id": 3
     },
     {
         "city": "London",
         "country": "England",
         "lat": 51.507351,
-        "lon": -0.127758
+        "lon": -0.127758,
+        "img": "/img/london.jpg",
+        "_id": 4
+    },
+    {
+        "city": "Tel Aviv",
+        "country": "Israel",
+        "lat": 32.073582,
+        "lon": 34.788052,
+        "img": "/img/tel-aviv.jpg",
+        "_id": 5
     }
 ]
