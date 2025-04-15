@@ -24,7 +24,7 @@ export function ForecastIndex() {
     }
   `
 
-    return <section className="forecast-index" >
+    return <section className="forecast-index" style={{backgroundColor: '#f5faff' }} >
         <CssBaseline />
         <ForecastHeader clearLocation={() => setCurrLoc(null)} />
         <ForecastList currLoc={currLoc} setCurrLoc={setCurrLoc} />

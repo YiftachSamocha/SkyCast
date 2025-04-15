@@ -2,6 +2,7 @@
 
 SkyCast is a weather forecast application built using **React**. It provides a clean and interactive interface for viewing weekly weather forecasts for selected locations. The app leverages **Material-UI (MUI)** for styling and **Recharts** for rendering interactive charts.
 
+![SkyCast Preview](public/img/sky-icon.png)
 ---
 
 ## Features

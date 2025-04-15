@@ -98,7 +98,15 @@ export function ForecastGraph({ location, clearLocation }) {
 
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-around', margin: 1, mt: 1.5 }}>
-                <Button variant="contained" disableElevation onClick={clearLocation}>
+                <Button variant="contained" disableElevation
+                    sx={{
+                        border: "1px solid gray", transition: "0.3s ease",
+                        "&:hover": {
+                            backgroundColor: "#0d47a1", 
+                           
+                        }
+                    }}
+                    onClick={clearLocation}>
                     Clear
                 </Button>
                 <Button variant="contained" disableElevation onClick={() => setIsNight(prev => !prev)}
@@ -106,7 +114,12 @@ export function ForecastGraph({ location, clearLocation }) {
                         width: '100px',
                         backgroundColor: isNight ? nightColor : dayColor,
                         color: isNight ? 'white' : 'black',
-                        border: '1px solid gray'
+                        border: '1px solid gray',
+                        transition: "0.3s ease",
+                        "&:hover": {
+                            backgroundColor: isNight ? "#34495e" : "#ffe082",
+
+                        }
                     }}>
                     {isNight ? "Night" : "Day"}
 
