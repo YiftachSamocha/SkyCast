@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ForecastIndex } from './cmps/ForecastIndex';
-import './styles/main.scss'
 
 
 

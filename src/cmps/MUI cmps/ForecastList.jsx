@@ -40,7 +40,7 @@ export function ForecastList({ currLoc, setCurrLoc }) {
                     >
                         <Item onClick={() => setCurrLoc(location)}
                             sx={{
-                                backgroundColor: currLoc && location._id === currLoc._id ? '#F8B5B5' : '#fff',
+                                backgroundColor: currLoc && location._id === currLoc._id ? '#90caf9' : '#fff',
                             }}>
                             <Typography variant="h5" component="h3" sx={{ fontWeight: 'bold' }}>
                                 {location.city}
