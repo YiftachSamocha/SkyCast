@@ -97,7 +97,7 @@ export function ForecastGraph({ location, clearLocation }) {
                 </AreaChart>
 
             </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'space-around', margin: 1, mt: 1.5 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-around', padding: 2.8, pt: 1.5 }}>
                 <Button variant="contained" disableElevation
                     sx={{
                         border: "1px solid gray", transition: "0.3s ease",
