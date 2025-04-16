@@ -85,8 +85,10 @@ To run the project using `npm`, follow these steps:
 
 4. In the root directory, create a file named .env and add this line:
   ```bash
-  REACT_APP_WEATHER_API_KEY=09dd6e9d0593d9c9c3f79b2762aa4908
+  REACT_APP_WEATHER_API_KEY=your_api_key_here
   ```
+   Important: To run the project, you must provide a valid API key from OpenWeather.
+
 
 5. Open your browser and navigate to:
    ```
