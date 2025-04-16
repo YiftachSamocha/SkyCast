@@ -2,7 +2,14 @@
 
 SkyCast is a weather forecast application built using **React**. It provides a clean and interactive interface for viewing weekly weather forecasts for selected locations. The app leverages **Material-UI (MUI)** for styling and **Recharts** for rendering interactive charts.
 
-<img src="public/img/sky-icon.png" width="400" />
+<img src="public/img/sky-icon.png" width="250" />
+---
+
+##  Live Demo
+
+The app is deployed here:  
+👉 [https://skycast-tan.vercel.app/](https://skycast-tan.vercel.app/)
+
 ---
 
 ## Features
@@ -76,9 +83,16 @@ To run the project using `npm`, follow these steps:
    npm start
    ```
 
-4. Open your browser and navigate to:
+4. In the root directory, create a file named .env and add this line:
+  ```bash
+  REACT_APP_WEATHER_API_KEY=09dd6e9d0593d9c9c3f79b2762aa4908
+  ```
+
+5. Open your browser and navigate to:
    ```
    http://localhost:3000
    ```
+
+
 
 This will start the app in development mode. Any changes you make to the code will automatically reload the app in the browser.

@@ -11,6 +11,7 @@ export function ForecastGraph({ location, clearLocation }) {
     const [isNight, setIsNight] = useState(false)
     const nightColor = '#2C3E50'
     const dayColor = '#FFECB3'
+    const apiKey= process.env.REACT_APP_WEATHER_API_KEY
 
     useEffect(() => {
         if (location) getData(location)
@@ -19,7 +20,7 @@ export function ForecastGraph({ location, clearLocation }) {
 
     async function getData(location) {
         try {
-            const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${location.lat}&lon=${location.lon}&exclude=current,hourly,minutely,alerts&appid=09dd6e9d0593d9c9c3f79b2762aa4908&units=metric`
+            const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${location.lat}&lon=${location.lon}&exclude=current,hourly,minutely,alerts&appid=${apiKey}&units=metric`
             const response = await fetch(url)
             const data = await response.json()
             const today = new Date()

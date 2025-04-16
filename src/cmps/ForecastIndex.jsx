@@ -4,25 +4,14 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ForecastList } from "./ForecastList";
 import { ForecastHeader } from "./ForecastHeader";
 import { ForecastGraph } from "./ForecastGraph";
-import { keyframes, Typography } from "@mui/material";
+import { BouncyText } from "./CustomHooks.jsx/BouncyText";
+import Lottie from 'lottie-react';
+import sunAnimation from '../assets/sun.json'
+import cloudAnimation from '../assets/cloud.json';
 
 
 export function ForecastIndex() {
     const [currLoc, setCurrLoc] = useState(null)
-    const pulse = keyframes`
-    0% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    50% {
-      transform: scale(1.05);
-      opacity: 0.85;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  `
 
     return <section className="forecast-index" style={{ backgroundColor: '#f5faff', height: '100%' }}  >
         <CssBaseline />
@@ -35,21 +24,18 @@ export function ForecastIndex() {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
+                flexDirection: 'column',
                 height: '50vh',
                 textAlign: 'center',
             }}
         >
-            <Typography
-                variant="h4"
-                sx={{
-                    fontWeight: 'bold',
-                    fontSize: '3em',
-                    color: '#1976d2',
-                    animation: `${pulse} 1s ease-out infinite`,
-                }}
-            >
-                Add a city to see your weekly forecast
-            </Typography>
+            <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
+                <Lottie animationData={sunAnimation} loop={true} style={{ width: 200, height: 200 }} />
+                <Lottie animationData={cloudAnimation} loop={true} style={{ width: 200, height: 200 }} />
+            </div>
+
+            <BouncyText text="Add a city to see your weekly forecast" />
+
         </Box>
         }
     </section>
