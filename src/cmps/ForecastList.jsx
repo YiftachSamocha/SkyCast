@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { getLocations } from '../service';
+import locations from '../data/locations.json'
 import { Typography } from '@mui/material';
 
 
@@ -29,8 +29,6 @@ const Item = styled(Paper)(({ theme }) => ({
 }))
 
 export function ForecastList({ currLoc, setCurrLoc }) {
-    const locations = getLocations()
-
     return (
         <Box sx={{ flexGrow: 1, p: 1, width: '100%' }}>
             <Grid container spacing={5} justifyContent="space-around" alignItems="center" >
