@@ -19,6 +19,7 @@ export function BouncyText({ text, variant = 'h4', color = '#1976d2', fontSize =
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',
+        margin: "0.5em"
       }}
     >
       {text.split('').map((char, i) => (

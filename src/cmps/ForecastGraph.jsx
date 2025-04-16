@@ -2,16 +2,17 @@ import { useEffect, useState } from "react"
 import { Area, AreaChart, Tooltip, XAxis, YAxis } from "recharts"
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { Summary } from "./CustomHooks.jsx/Summary";
 
 export function ForecastGraph({ location, clearLocation }) {
     const [weekData, setWeekData] = useState([])
     const [isError, setIsError] = useState(false)
     const [isNight, setIsNight] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const nightColor = '#2C3E50'
     const dayColor = '#FFECB3'
-    const apiKey= process.env.REACT_APP_WEATHER_API_KEY
+    const apiKey = process.env.REACT_APP_WEATHER_API_KEY
 
     useEffect(() => {
         if (location) getData(location)
@@ -43,6 +44,9 @@ export function ForecastGraph({ location, clearLocation }) {
         } catch {
             setIsError(true)
         }
+        finally {
+            setIsLoading(false)
+        }
 
     }
 
@@ -71,63 +75,82 @@ export function ForecastGraph({ location, clearLocation }) {
     }
 
     return <section>
-        {isError ? <Typography variant="h6"
+        {isLoading ? <Box
             sx={{
-                fontWeight: 'bold',
-                fontSize: '1.5em',
-                color: '#d32f2f',
-                textAlign: 'center',
-                marginTop: '20px',
-            }}>Couldn't load wheather forecast</Typography> : <div>
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-                <AreaChart width={850} height={270} data={weekData}
-                    margin={{ top: 0, right: 30, left: 30, bottom: 60 }}>
-                    <XAxis dataKey="date" tick={<Tick />} />
-                    <YAxis domain={['dataMin - 2', 'dataMax + 2']}
-                        tick={{ fill: '#333', fontSize: 14, fontWeight: 'bold' }} hide />
-                    <Tooltip content={<Summary />} cursor={false} />
-                    <Area
-                        type="monotone"
-                        dataKey="temp"
-                        stroke="#1976d2"
-                        fill="#90caf9"
-                        fillOpacity={0.7}
-                        baseValue="dataMin"
-                        label={{ position: 'top', fill: '#444', fontSize: 16 }}
-                    />
-                </AreaChart>
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                margin: "2em",
+                marginTop: "6em"
+        
+            }}
+        >
+            <CircularProgress
+                sx={{
+                    width: '120px !important', // Increase loader size
+                    height: '120px !important', // Increase loader size
+                }}
+            />
+        </Box> : <div>
+            {isError ? <Typography variant="h6"
+                sx={{
+                    fontWeight: 'bold',
+                    fontSize: '2em',
+                    color: '#d32f2f',
+                    textAlign: 'center',
+                    marginTop: '4em',
+                }}>Couldn't load wheather forecast</Typography> : <div>
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
+                    <AreaChart width={850} height={270} data={weekData}
+                        margin={{ top: 0, right: 30, left: 30, bottom: 60 }}>
+                        <XAxis dataKey="date" tick={<Tick />} />
+                        <YAxis domain={['dataMin - 2', 'dataMax + 2']}
+                            tick={{ fill: '#333', fontSize: 14, fontWeight: 'bold' }} hide />
+                        <Tooltip content={<Summary />} cursor={false} />
+                        <Area
+                            type="monotone"
+                            dataKey="temp"
+                            stroke="#1976d2"
+                            fill="#90caf9"
+                            fillOpacity={0.7}
+                            baseValue="dataMin"
+                            label={{ position: 'top', fill: '#444', fontSize: 16 }}
+                        />
+                    </AreaChart>
 
-            </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'space-around', padding: 2.8, pt: 1.5 }}>
-                <Button variant="contained" disableElevation
-                    sx={{
-                        border: "1px solid gray", transition: "0.3s ease",
-                        "&:hover": {
-                            backgroundColor: "#0d47a1", 
-                           
-                        }
-                    }}
-                    onClick={clearLocation}>
-                    Clear
-                </Button>
-                <Button variant="contained" disableElevation onClick={() => setIsNight(prev => !prev)}
-                    sx={{
-                        width: '100px',
-                        backgroundColor: isNight ? nightColor : dayColor,
-                        color: isNight ? 'white' : 'black',
-                        border: '1px solid gray',
-                        transition: "0.3s ease",
-                        "&:hover": {
-                            backgroundColor: isNight ? "#34495e" : "#ffe082",
+                </Box>
+                <Box sx={{ display: 'flex', justifyContent: 'space-around', padding: 2.8, pt: 1.5 }}>
+                    <Button variant="contained" disableElevation
+                        sx={{
+                            border: "1px solid gray", transition: "0.3s ease",
+                            "&:hover": {
+                                backgroundColor: "#0d47a1",
 
-                        }
-                    }}>
-                    {isNight ? "Night" : "Day"}
+                            }
+                        }}
+                        onClick={clearLocation}>
+                        Clear
+                    </Button>
+                    <Button variant="contained" disableElevation onClick={() => setIsNight(prev => !prev)}
+                        sx={{
+                            width: '100px',
+                            backgroundColor: isNight ? nightColor : dayColor,
+                            color: isNight ? 'white' : 'black',
+                            border: '1px solid gray',
+                            transition: "0.3s ease",
+                            "&:hover": {
+                                backgroundColor: isNight ? "#34495e" : "#ffe082",
 
-                </Button>
-            </Box>
+                            }
+                        }}>
+                        {isNight ? "Night" : "Day"}
+
+                    </Button>
+                </Box>
+            </div>
+
+            }
         </div>
-
         }
     </section>
 

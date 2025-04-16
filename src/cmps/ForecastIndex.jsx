@@ -13,7 +13,7 @@ import cloudAnimation from '../assets/cloud.json';
 export function ForecastIndex() {
     const [currLoc, setCurrLoc] = useState(null)
 
-    return <section className="forecast-index" style={{ backgroundColor: '#f5faff', height: '100%' }}  >
+    return <section className="forecast-index" style={{ backgroundColor: '#f5faff', height: '100%', minHeight: '100vh', }}  >
         <CssBaseline />
         <ForecastHeader clearLocation={() => setCurrLoc(null)} />
         <ForecastList currLoc={currLoc} setCurrLoc={setCurrLoc} />
@@ -25,7 +25,7 @@ export function ForecastIndex() {
                 justifyContent: 'center',
                 alignItems: 'center',
                 flexDirection: 'column',
-                height: '50vh',
+                height: '100%',
                 textAlign: 'center',
             }}
         >

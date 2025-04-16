@@ -23,14 +23,14 @@ const Item = styled(Paper)(({ theme }) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: '200px',
-    width: '200px',
+    height: '14em',
+    width: '14em',
     overflow: 'hidden'
 }))
 
 export function ForecastList({ currLoc, setCurrLoc }) {
     return (
-        <Box sx={{ flexGrow: 1, p: 1, width: '100%' }}>
+        <Box sx={{ flexGrow: 1, p: 1.2, width: '100%' }}>
             <Grid container spacing={5} justifyContent="space-around" alignItems="center" >
                 {locations.map((location) => (
 

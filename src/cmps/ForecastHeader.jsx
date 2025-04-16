@@ -9,7 +9,8 @@ const Header = styled(AppBar)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: theme.spacing(1,5),
+    paddingBlock: 8,
+    paddingInline:(15,30),
     flexDirection: "row",
     marginBottom: theme.spacing(3)
 }))
@@ -18,15 +19,13 @@ export function ForecastHeader({ clearLocation }) {
         <Box sx={{ flexGrow: 1 }}>
 
             <Header position="static">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
                     <Button onClick={clearLocation} sx={{backgroundColor: 'inherit'}}><img src='/img/sky-icon.png' height="30px" width="30px" /></Button>
                     <Typography variant="h6" component="div" sx={{fontFamily: '"Comic Sans MS", cursive, sans-serif', flexGrow: 1, cursor: 'default' }}>
                         SkyCast
                     </Typography>
                 </div>
                 <img src='/img/mona-icon.png' height="30px" width="auto" />
-
-
 
             </Header>
         </Box>

@@ -8,7 +8,7 @@ SkyCast is a weather forecast application built using **React**. It provides a c
 ##  Live Demo
 
 The app is deployed here:  
-👉 [https://skycast-tan.vercel.app/](https://skycast-tan.vercel.app/)
+[https://skycast-tan.vercel.app/](https://skycast-tan.vercel.app/)
 
 ---
 
