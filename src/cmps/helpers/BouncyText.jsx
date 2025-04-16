@@ -1,40 +1,39 @@
-import React from 'react';
-import { Box, Typography, keyframes } from '@mui/material';
+import React from 'react'
+import { Box, Typography, keyframes, styled } from '@mui/material'
 
+// Keyframes for bounce animation
 const bounce = keyframes`
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
-`;
+  0%   { transform: translateY(0) }
+  50%  { transform: translateY(-10px) }
+  100% { transform: translateY(0) }
+`
 
+// Component styling
+const StyledTypography = styled(Typography)(({ fontSize, color }) => ({
+  fontWeight: 'bold',
+  fontSize,
+  color,
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+  margin: '0.5em',
+}))
 
+const StyledBox = styled(Box)(({ delay }) => ({
+  display: 'inline-block',
+  animation: `${bounce} 1s ease-in-out infinite`,
+  animationDelay: `${delay}s`,
+}))
+
+// This component animates each character of the given text with a bouncing effect.
 export function BouncyText({ text, variant = 'h4', color = '#1976d2', fontSize = '2.5em' }) {
   return (
-    <Typography
-      variant={variant}
-      sx={{
-        fontWeight: 'bold',
-        fontSize,
-        color,
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        margin: "0.5em"
-      }}
-    >
+    <StyledTypography variant={variant} fontSize={fontSize} color={color}>
       {text.split('').map((char, i) => (
-        <Box
-          key={i}
-          component="span"
-          sx={{
-            display: 'inline-block',
-            animation: `${bounce} 1s ease-in-out infinite`,
-            animationDelay: `${i * 0.05}s`,
-          }}
-        >
+        <StyledBox key={i} delay={i * 0.05}>
           {char === ' ' ? '\u00A0' : char}
-        </Box>
+        </StyledBox>
       ))}
-    </Typography>
-  );
+    </StyledTypography>
+  )
 }
