@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
-import { Area, AreaChart, Tooltip, XAxis, YAxis } from "recharts"
+import { Area, AreaChart, Tooltip, XAxis, YAxis, ResponsiveContainer } from "recharts"
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Button, CircularProgress } from "@mui/material";
 import { Summary } from "./helpers/Summary";
 
-export function ForecastGraph({ location, clearLocation }) {
+export function ForecastGraph({ location, clearLocation, isSmallScreen }) {
     const [weekData, setWeekData] = useState([])
     const [isError, setIsError] = useState(false)
     const [isNight, setIsNight] = useState(false)
@@ -80,7 +80,7 @@ export function ForecastGraph({ location, clearLocation }) {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                width:"100%",
+                width: "100%",
                 marginTop: "6em",
                 paddingRight: "20em"
 
@@ -92,18 +92,21 @@ export function ForecastGraph({ location, clearLocation }) {
                     height: '100px !important',
                 }}
             />
-        </Box> : <div>
+        </Box> : <div >
             {isError ? <Typography variant="h6"
                 sx={{
                     fontWeight: 'bold',
                     fontSize: '2em',
                     color: '#d32f2f',
                     textAlign: 'center',
-                    
+
                 }}>Couldn't load wheather forecast</Typography> : <div>
-                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-                    <AreaChart width={850} height={270} data={weekData}
-                        margin={{ top: 0, right: 30, left: 30, bottom: 60 }}>
+                <Box sx={{ height: 250,   display: "flex", justifyContent: "center", alignItems: "center" }}>
+
+                    <AreaChart data={weekData}
+                        height={250}
+                        width={isSmallScreen ? 300 : 800}
+                        margin={{ top: 0, bottom: 60, right: 0, left:30 }}>
                         <XAxis dataKey="date" tick={<Tick />} />
                         <YAxis domain={['dataMin - 2', 'dataMax + 2']}
                             tick={{ fill: '#333', fontSize: 14, fontWeight: 'bold' }} hide />
@@ -119,10 +122,12 @@ export function ForecastGraph({ location, clearLocation }) {
                         />
                     </AreaChart>
 
+
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'space-around', padding: 1.5 }}>
                     <Button variant="contained" disableElevation
                         sx={{
+                            width: "100px",
                             border: "1px solid gray", transition: "0.3s ease",
                             "&:hover": {
                                 backgroundColor: "#0d47a1",

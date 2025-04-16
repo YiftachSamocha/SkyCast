@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ForecastList } from "./ForecastList";
@@ -13,15 +13,30 @@ import { ForecastSearch } from "./ForecastSearch";
 
 export function ForecastIndex() {
     const [currLoc, setCurrLoc] = useState(null)
+    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1100)
+
+    useEffect(() => {
+        const handleResize = () => setIsSmallScreen(window.innerWidth < 1100)
+        window.addEventListener("resize", handleResize)
+
+        return () => window.removeEventListener("resize", handleResize)
+    }, [])
 
     return <section className="forecast-index" style={{ backgroundColor: '#f5faff', height: '100%', minHeight: '100vh', }}  >
         <CssBaseline />
         <ForecastHeader currLoc={currLoc} clearLocation={() => setCurrLoc(null)} />
-        <ForecastList currLoc={currLoc} setCurrLoc={setCurrLoc} />
-        <div style={{ display: "flex", justifyContent: "space-between", paddingInline:"30px", paddingTop:"20px", alignItems: "start" }}>
+        <ForecastList currLoc={currLoc} setCurrLoc={setCurrLoc} isSmallScreen={isSmallScreen} />
+        <Box sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            paddingInline: "30px",
+            paddingTop: "20px",
+            alignItems: isSmallScreen ? "center" : "start",
+            flexDirection: isSmallScreen ? "column" : "row"
+        }}>
             <ForecastSearch currLoc={currLoc} setCurrLoc={setCurrLoc} />
             {currLoc ? <div>
-                <ForecastGraph location={currLoc} clearLocation={() => setCurrLoc(null)} />
+                <ForecastGraph location={currLoc} clearLocation={() => setCurrLoc(null)} isSmallScreen={isSmallScreen} />
             </div> : <Box
                 sx={{
                     display: 'flex',
@@ -40,8 +55,8 @@ export function ForecastIndex() {
                 <BouncyText text="Add a city to see your weekly forecast" />
 
             </Box>
-            } 
-            </div>
+            }
+        </Box>
     </section>
 
 }

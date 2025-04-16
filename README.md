@@ -48,7 +48,7 @@ The app is deployed here:
   - Allows users to select a location to view its weather forecast.
   - Styled with Material-UI's grid system for responsiveness.
 
-  ### **5. ForecastSearch**
+### **5. ForecastSearch**
 - **Purpose**: Allows users to search for cities and add them to the forecast list.
 - **Details**:
   - Provides an autocomplete search bar for finding cities.

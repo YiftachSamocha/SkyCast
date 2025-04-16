@@ -13,7 +13,7 @@ export function ForecastSearch({ currLoc, setCurrLoc }) {
 
         const timeoutId = setTimeout(() => {
             getCities()
-        }, 500)
+        }, 1000)
         return () => clearTimeout(timeoutId);
     }, [currLoc, input])
 
@@ -41,6 +41,7 @@ export function ForecastSearch({ currLoc, setCurrLoc }) {
                     label: `${item.city}, ${item.country}`
                 }
             })
+            setIsError(false)
             setCities(newCities)
 
         } catch {
@@ -57,7 +58,7 @@ export function ForecastSearch({ currLoc, setCurrLoc }) {
         }}
     > <Autocomplete
             disablePortal
-            options={cities}
+            options={isError ? [] : cities}
             onChange={(event, newValue) => setCurrLoc(newValue)}
             inputValue={input}
             onInputChange={(event, newInput) => setInput(newInput)}
