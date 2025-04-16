@@ -4,7 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ForecastList } from "./ForecastList";
 import { ForecastHeader } from "./ForecastHeader";
 import { ForecastGraph } from "./ForecastGraph";
-import { BouncyText } from "./CustomHooks.jsx/BouncyText";
+import { BouncyText } from "./helpers/BouncyText";
 import Lottie from 'lottie-react';
 import sunAnimation from '../assets/sun.json'
 import cloudAnimation from '../assets/cloud.json';

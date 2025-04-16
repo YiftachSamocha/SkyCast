@@ -30,8 +30,8 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export function ForecastList({ currLoc, setCurrLoc }) {
     return (
-        <Box sx={{ flexGrow: 1, p: 1.2, width: '100%' }}>
-            <Grid container spacing={5} justifyContent="space-around" alignItems="center" >
+        <Box sx={{ flexGrow: 1, paddingInline: "30px", paddingBlock: "10px", width: '100%' }}>
+            <Grid container spacing={5} justifyContent="space-between" alignItems="center" >
                 {locations.map((location) => (
 
                     <Grid item xs={12} sm={6} md={4} lg={3} key={location.id}

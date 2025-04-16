@@ -10,7 +10,8 @@ const Header = styled(AppBar)(({ theme }) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingBlock: 8,
-    paddingInline:(15,30),
+    paddingRight:"35px",
+    paddingLeft: "15px",
     flexDirection: "row",
     marginBottom: theme.spacing(3)
 }))

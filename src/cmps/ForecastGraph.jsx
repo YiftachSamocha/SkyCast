@@ -3,7 +3,7 @@ import { Area, AreaChart, Tooltip, XAxis, YAxis } from "recharts"
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Button, CircularProgress } from "@mui/material";
-import { Summary } from "./CustomHooks.jsx/Summary";
+import { Summary } from "./helpers/Summary";
 
 export function ForecastGraph({ location, clearLocation }) {
     const [weekData, setWeekData] = useState([])
@@ -33,7 +33,7 @@ export function ForecastGraph({ location, clearLocation }) {
                 return {
                     day: dayName,
                     date: formattedDate,
-                    temp: isNight ? Math.round(item.temp.night) : Math.round(item.temp.day),
+                    temp: Math.round(isNight ? item.temp.night : item.temp.day),
                     summary: item.summary,
                     img: `/img/weather-icons/${item.weather[0].icon}@2x.png`
                 }
@@ -82,13 +82,13 @@ export function ForecastGraph({ location, clearLocation }) {
                 alignItems: 'center',
                 margin: "2em",
                 marginTop: "6em"
-        
+
             }}
         >
             <CircularProgress
                 sx={{
-                    width: '120px !important', // Increase loader size
-                    height: '120px !important', // Increase loader size
+                    width: '120px !important',
+                    height: '120px !important',
                 }}
             />
         </Box> : <div>
