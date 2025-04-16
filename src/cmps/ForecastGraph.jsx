@@ -80,15 +80,16 @@ export function ForecastGraph({ location, clearLocation }) {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                margin: "2em",
-                marginTop: "6em"
+                width:"100%",
+                marginTop: "6em",
+                paddingRight: "20em"
 
             }}
         >
             <CircularProgress
                 sx={{
-                    width: '120px !important',
-                    height: '120px !important',
+                    width: '100px !important',
+                    height: '100px !important',
                 }}
             />
         </Box> : <div>
@@ -98,7 +99,7 @@ export function ForecastGraph({ location, clearLocation }) {
                     fontSize: '2em',
                     color: '#d32f2f',
                     textAlign: 'center',
-                    marginTop: '4em',
+                    
                 }}>Couldn't load wheather forecast</Typography> : <div>
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
                     <AreaChart width={850} height={270} data={weekData}
@@ -119,7 +120,7 @@ export function ForecastGraph({ location, clearLocation }) {
                     </AreaChart>
 
                 </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'space-around', padding: 2.8, pt: 1.5 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-around', padding: 1.5 }}>
                     <Button variant="contained" disableElevation
                         sx={{
                             border: "1px solid gray", transition: "0.3s ease",

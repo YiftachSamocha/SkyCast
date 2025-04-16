@@ -1,6 +1,6 @@
 # SkyCast
 
-SkyCast is a weather forecast application built using **React**. It provides a clean and interactive interface for viewing weekly weather forecasts for selected locations. The app leverages **Material-UI (MUI)** for styling and **Recharts** for rendering interactive charts.
+SkyCast is a weather forecast application built using **React**. It provides a clean and interactive interface for viewing weekly weather forecasts for selected locations. Users can easily add a location to instantly view its weather forecast. The app leverages **Material-UI (MUI)** for styling and **Recharts** for rendering interactive charts. 
 
 <img src="public/img/sky-icon.png" width="250" />
 ---
@@ -15,6 +15,7 @@ The app is deployed here:
 ## Features
 - **Dynamic Weather Graph**: Displays temperature trends for the week.
 - **Location Management**: Add and view weather forecasts for multiple cities.
+- **Add a Location**: Users can search and add a location to instantly get its weather forecast.
 - **Interactive UI**: Clean and responsive design styled with Material-UI.
 
 ---
@@ -46,6 +47,13 @@ The app is deployed here:
 - **Details**:
   - Allows users to select a location to view its weather forecast.
   - Styled with Material-UI's grid system for responsiveness.
+
+  ### **5. ForecastSearch**
+- **Purpose**: Allows users to search for cities and add them to the forecast list.
+- **Details**:
+  - Provides an autocomplete search bar for finding cities.
+  - Fetches city data from the GeoDB Cities API using RapidAPI.
+  - Dynamically updates the list of cities based on user input.
 
 ---
 
@@ -83,11 +91,16 @@ To run the project using `npm`, follow these steps:
    npm start
    ```
 
-4. In the root directory, create a file named .env and add this line:
+4. In the root directory, create a file named .env and add this lines:
   ```bash
   REACT_APP_WEATHER_API_KEY=your_api_key_here
+  REACT_APP_CITIES_API_KEY=your_api_key_here
   ```
-   Important: To run the project, you must provide a valid API key from OpenWeather.
+   Important: To run the project, you must provide:
+
+A valid API key from OpenWeather.
+
+A valid API key from RapidAPI.
 
 
 5. Open your browser and navigate to:

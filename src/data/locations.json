@@ -5,7 +5,7 @@
         "lat": 35.689487,
         "lon": 139.691711,
         "img": "/img/cities-imgs/tokyo.jpg",
-        "_id": 1
+        "id": 1
     },
     {
         "city": "Los Angeles",
@@ -13,7 +13,7 @@
         "lat": 34.052235,
         "lon": -118.243683,
         "img": "/img/cities-imgs/los-angeles.jpg",
-        "_id": 2
+        "id": 2
     },
     {
         "city": "Bangkok",
@@ -21,7 +21,7 @@
         "lat": 13.756331,
         "lon": 100.501762,
         "img": "/img/cities-imgs/bangkok.jpg",
-        "_id": 3
+        "id": 3
     },
     {
         "city": "London",
@@ -29,7 +29,7 @@
         "lat": 51.507351,
         "lon": -0.127758,
         "img": "/img/cities-imgs/london.jpg",
-        "_id": 4
+        "id": 4
     },
     {
         "city": "Tel Aviv",
@@ -37,6 +37,6 @@
         "lat": 32.073582,
         "lon": 34.788052,
         "img": "/img/cities-imgs/tel-aviv.jpg",
-        "_id": 5
+        "id": 5
     }
 ]

@@ -30,15 +30,15 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export function ForecastList({ currLoc, setCurrLoc }) {
     return (
-        <Box sx={{ flexGrow: 1, paddingInline: "30px", paddingBlock: "10px", width: '100%' }}>
+        <Box sx={{ flexGrow: 1, paddingInline: "30px", paddingBlock: "5px", width: '100%' }}>
             <Grid container spacing={5} justifyContent="space-between" alignItems="center" >
                 {locations.map((location) => (
 
-                    <Grid item xs={12} sm={6} md={4} lg={3} key={location.id}
+                    <Grid item  key={location.id}
                     >
                         <Item onClick={() => setCurrLoc(location)}
                             sx={{
-                                backgroundColor: currLoc && location._id === currLoc._id ? '#90caf9' : '#fff',
+                                backgroundColor: currLoc && location.id === currLoc.id ? '#90caf9' : '#fff',
                             }}>
                             <Typography variant="contained" component="h3" sx={{ fontWeight: 'bold', color: '#000006' }}>
                                 {location.city}
